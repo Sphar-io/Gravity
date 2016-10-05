@@ -30,20 +30,8 @@ window.onload = function() {
 	f2.open();
 }
 
-function drawTrails(thisBall){
-	for(var i = 0; i < thisBall.posQueue.length; i++){
-		var queue = thisBall.posQueue[i];
-		var alpha = (i+1)/queue.length;
-		var radius = thisBall.radius;
-		var trailRad = (radius-(radius/2.5)) * Math.sin(i/trailsLength * (Math.PI/2)) + (radius/2.5);
-		ctx.fillStyle = "rgba(" + thisBall.r + "," + thisBall.g + "," + thisBall.b +"," + alpha/10 + ")";
-		drawBall(queue[0],queue[1],rad); //fix
-	}
-}
-
-function drawBall(thisBall){
-	ctx.fillStyle = "rgb(" + thisBall.r + "," + thisBall.g + "," + thisBall.b + ")"; 
-	console.log(ctx.fillStyle);
+function drawBall(r,g,b,a,x,y,rad){
+	ctx.fillStyle = "rgba(" + r + "," + g + "," + b + "," + a + ")"; 
 	var x = thisBall.x;
 	var y = thisBall.y;
 	var rad = thisBall.radius;
@@ -53,11 +41,24 @@ function drawBall(thisBall){
 	ctx.fill();
 }
 
+function drawTrails(thisBall){
+	for(var i = 0; i < thisBall.posQueue.length; i++){
+		var queue = thisBall.posQueue[i];
+		var alpha = (i+1)/queue.length;
+		var radius = thisBall.radius;
+		var trailRad = (radius-(radius/2.5)) * Math.sin(i/trailsLength * (Math.PI/2)) + (radius/2.5);
+		ctx.fillStyle = "rgba(" + thisBall.r + "," + thisBall.g + "," + thisBall.b +"," + alpha/10 + ")";
+		drawBall(thisBall.r, thisBall.g, thisBall.b, thisBall.alpha/10, queue.x,queue.y,radius);
+	}
+}
+
 function update(){
+	ctx.clearRect(0,0,w,h);
 	for(var i=0; i<ballsArray.length; i++){
 		thisBall = ballsArray[i];
 		thisBall.moveBall();
-		drawBall(thisBall);
+		drawBall(thisBall.r, thisBall.g, thisBall.b, 1, thisBall.x, thisBall.y, thisBall.radius);
+		drawTrails(thisBall);
 	}
 	requestAnimationFrame(update);
 }

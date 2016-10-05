@@ -22,6 +22,9 @@ function ball()
 
 		this.x += this.vx;
 		this.y += this.vy;
+
+		this.posQueue.push({x: this.x, y: this.y});
+		if(this.posQueue.length > trailsLength) this.posQueue.shift();
 	}
 }
 

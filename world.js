@@ -8,6 +8,25 @@ var h = canvas.height;
 var ballsArray = [];
 var trailsLength = 10;
 
+
+function bounce(){
+	for(var i=0 ; i<ballsArray.length ; i++){
+	//check for world collisions
+	var thisBall = ballsArray[i];
+	var nextX = thisBall.x + thisBall.vx;
+	var nextY = thisBall.y + thisBall.vy
+	if(nextX > w-thisBall.radius || nextX < 0+thisBall.radius){ //horizontal world collision
+		thisBall.bounceX();
+		alert("ding");
+	}
+	if(nextY > h-thisBall.radius || nextY < 0+thisBall.radius){ //vertical world collision
+		thisBall.bounceY();
+	}
+
+	//check for ball positions
+	}
+}
+
 function generateBalls(number){
 	for(var i=0;i<number; i++){
 		thisBall = new ball();
