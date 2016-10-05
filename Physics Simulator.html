@@ -1,20 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Trails</title>
+	<title>Physics Simulator</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<style type="text/css">
-		#defCanvas{
-			width: 80vh;
-			height: 80vh;
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style type="text/css">	
+		body{
+			background-color: #6C7A89;
+			margin-top: 10px;
+			margin-bottom: 20px;
+		}
+		html {
+			position: relative;
+			min-height: 100%;
+		}
+		#canvasA{
+			display: block;
+			margin: 0px auto;
+			width: 90vh;
+			height: 90vh;
 			box-shadow: 10px 10px 50px #888888;
+			background: white;
+		}
+		.darkWell{
+			background: #2C3E50;
+			color: white;
+		}
+		.footer {
+		  position: absolute;
+		  bottom: 0px;
+		  width: 100%;
+		  background-color: #222;
+		  height: 30px;
+		}
+		select{
+			color: black;
+		}
+		input[type="text"]{
+			font:13px arial;
 		}
 	</style>
 </head>
 <body>
-	<input type="button" id="generateButton" value="Click to Regenerate!" onclick="start()">
-	<br>
-	<canvas id="defCanvas"></canvas>
-	<script type="text/javascript" src="gravity.js"></script>
+<div class="container">
+<div class="well text-center">
+	<h2>Physics Simulator</h2>
+	<div class="row">
+		<div class="col-xs-12">
+			<canvas id="canvasA"></canvas>
+		</div>
+	</div>
+</div>
+</div>
+<footer class="footer navbar-fixed-bottom">
+     <div class="container text-center">
+     <p class="text-muted text">&copy; Jonathan Sphar 2016</p>
+     </div>
+</footer>
+<script type="text/javascript" src="dat.gui.min.js"></script>
+<script type='text/javascript' src='draw.js'></script>
+<script type="text/javascript" src='ball.js'></script>
+<script type="text/javascript" src='world.js'></script>
 </body>
 </html>
