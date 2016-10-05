@@ -1,0 +1,12 @@
+Layout
+
+ball.js
+	-information about balls
+		-size, color, vx and vy, x and y, weight
+world.js
+	-World information
+		-Canvas information
+		-Friction, gravity, bouncefactor
+	-Draws balls
+	-Checks clipping
+	-general ruleset
