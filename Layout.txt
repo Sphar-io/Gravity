@@ -7,6 +7,8 @@ world.js
 	-World information
 		-Canvas information
 		-Friction, gravity, bouncefactor
-	-Draws balls
 	-Checks clipping
 	-general ruleset
+draw.js
+	-Draws balls
+	-draws dat.gui
