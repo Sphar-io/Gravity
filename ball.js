@@ -13,6 +13,7 @@ function ball()
 	this.bounceY = function(){
 		this.vy *= -1*bounceFactor;
 	}
+	
 	this.posQueue = [];
 
 	this.moveBall = function(){
