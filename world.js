@@ -2,6 +2,8 @@
 var frictionCoe = .998 //vi*friction = vf. 1 is no friction 
 var trailsLength = 10; //Number of "trails" each particle will draw
 var bounceFactor = 1; //The restitution factor of each Particle. 1 is perfectly elastic
+var gravity = 2;
+
 var pi = Math.PI; 
 var w = canvas.width; 
 var h = canvas.height; 
@@ -16,11 +18,11 @@ function bounce(){
 		//checks for world collisions
 		if(nextX > w-thisParticle.radius || nextX < 0+thisParticle.radius){ //horizontal world collision
 			xWallBounce(thisParticle);
-			thisParticle.x = (nextX > w-thisParticle.radius) ? w-thisParticle.radius-2: 2 + thisParticle.radius;
+			thisParticle.x = (nextX > w-thisParticle.radius) ? w-thisParticle.radius : thisParticle.radius;
 		}
 		if(nextY > h-thisParticle.radius || nextY < 0+thisParticle.radius){ //vertical world collision
 			yWallBounce(thisParticle);
-			thisParticle.y = (nextY > h-thisParticle.radius) ? h-thisParticle.radius-2: 2 + thisParticle.radius;
+			thisParticle.y = (nextY > h-thisParticle.radius) ? h-thisParticle.radius :  thisParticle.radius;
 		}
 		//end of world collision checking
 		//check for other particle collisions. Goes through every future particle (so two particles don't "collide twice" in one frame).

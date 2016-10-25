@@ -16,7 +16,7 @@ function Particle()
 
 	this.moveParticle = function(){
 		this.vx *= frictionCoe;
-		this.vy *= frictionCoe;
+		this.vy = this.vy*frictionCoe+gravity;
 
 		this.x += this.vx;
 		this.y += this.vy;

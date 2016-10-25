@@ -134,6 +134,11 @@ function colorScaler(){
 	for (var i = 0; i < particlesArray.length; i++) {
 		setColor(particlesArray[i]);
 	}
+	if(particlesArray.length === 1){
+		particlesArray[0].h = 100;
+		particlesArray[0].s = 100;
+		particlesArray[0].l = 50;
+	}
 }
 
 //Sets the color of a particle. Uses a mapping function to change it's relative mass to a relative color (currently lightest to heaviest is from green to red)
