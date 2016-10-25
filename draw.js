@@ -24,6 +24,7 @@ function guiObj(){
 	this.step = function(){step();};
 	this.friction = 20;
 	this.bounciness = 1;
+	this.gravityAmount = 0;
 }
 
 //Initializes dat.gui object, adds menu options, then generates particles and starts simulation loop 
@@ -44,6 +45,8 @@ window.onload = function() {
 		f2.add(menu, 'step');
 		f2.add(menu, 'friction', 0, 100).onFinishChange(setFriction);
 		f2.add(menu, 'bounciness', .5,1.5).onFinishChange(setBounce);
+		var f22 = f2.addFolder('Beta controls');
+			f22.add(menu, 'gravityAmount',0,5).step(.25).onFinishChange(setGravity);
 		//Folder for creating a custom particle
 		var f21 = gui.addFolder('Add Particle');
 			f21.add(menu,'xPosition',0,w);
@@ -75,6 +78,10 @@ function setFriction(){
 
 function setBounce(){
 	bounceFactor = menu.bounciness;
+}
+
+function setGravity(){
+	gravity = menu.gravityAmount;
 }
 
 //Creates a new particle given the information stored in the menu. Calls seperate to make sure it has a legal position
