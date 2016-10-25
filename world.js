@@ -2,6 +2,8 @@
 var frictionCoe = .998 //vi*friction = vf. 1 is no friction 
 var trailsLength = 10; //Number of "trails" each particle will draw
 var bounceFactor = 1; //The restitution factor of each Particle. 1 is perfectly elastic
+var gravity = 0; //The amount by which each particle's vy increases by per frame
+
 var pi = Math.PI; 
 var w = canvas.width; 
 var h = canvas.height; 
@@ -16,11 +18,11 @@ function bounce(){
 		//checks for world collisions
 		if(nextX > w-thisParticle.radius || nextX < 0+thisParticle.radius){ //horizontal world collision
 			xWallBounce(thisParticle);
-			thisParticle.x = (nextX > w-thisParticle.radius) ? w-thisParticle.radius-2: 2 + thisParticle.radius;
+			thisParticle.x = (nextX > w-thisParticle.radius) ? w-thisParticle.radius : thisParticle.radius; //places the particle on the floor or ceiling to prevent overlaps
 		}
 		if(nextY > h-thisParticle.radius || nextY < 0+thisParticle.radius){ //vertical world collision
 			yWallBounce(thisParticle);
-			thisParticle.y = (nextY > h-thisParticle.radius) ? h-thisParticle.radius-2: 2 + thisParticle.radius;
+			thisParticle.y = (nextY > h-thisParticle.radius) ? h-thisParticle.radius :  thisParticle.radius; //same as above but for walls
 		}
 		//end of world collision checking
 		//check for other particle collisions. Goes through every future particle (so two particles don't "collide twice" in one frame).
@@ -44,7 +46,7 @@ function bounce(){
 function particleBounce(thisParticle, otherParticle){
 	var m1 = thisParticle.mass;
 	var m2 = otherParticle.mass;
-	//These 4 lines are the actual calculations. Formulae are 60% hyperphysics.com 40% magic. 
+	//These 4 lines are the actual calculations. Formulae are 60% hyperphysics.com and 40% magic. 
 	var thisParticleTempX = bounceFactor*( ((m1-m2)/(m1+m2))*thisParticle.vx + ((2*m2)/(m1+m2))*otherParticle.vx );
 	var otherParticleTempX = bounceFactor*( ((2*m1)/(m1+m2))*thisParticle.vx - ((m1-m2)/(m1+m2))*otherParticle.vx );
 	var thisParticleTempY = bounceFactor*( ((m1-m2)/(m1+m2))*thisParticle.vy + ((2*m2)/(m1+m2))*otherParticle.vy );
@@ -54,11 +56,6 @@ function particleBounce(thisParticle, otherParticle){
 	thisParticle.vy = thisParticleTempY;
 	otherParticle.vx = otherParticleTempX;
 	otherParticle.vy = otherParticleTempY;
-	// These lines were a temporary workaround to stop particles from getting stuck in each other but they might not be necessary
-	// thisParticle.x += thisParticle.vx; These lines were a temporary workaround to stop particles from getting stuck in each other but they might not be necessary
-	// thisParticle.y += thisParticle.vy;
-	// otherParticle.x += otherParticle.vx;
-	// otherParticle.y += otherParticle.vy;
 }
 
 //Given a number, generates particles randomly inside the canvas. Calls the seperate method to ensure they aren't drawn overlapping
