@@ -46,7 +46,7 @@ function bounce(){
 function particleBounce(thisParticle, otherParticle){
 	var m1 = thisParticle.mass;
 	var m2 = otherParticle.mass;
-	//These 4 lines are the actual calculations. Formulae are 60% hyperphysics.com 40% magic. 
+	//These 4 lines are the actual calculations. Formulae are 60% hyperphysics.com and 40% magic. 
 	var thisParticleTempX = bounceFactor*( ((m1-m2)/(m1+m2))*thisParticle.vx + ((2*m2)/(m1+m2))*otherParticle.vx );
 	var otherParticleTempX = bounceFactor*( ((2*m1)/(m1+m2))*thisParticle.vx - ((m1-m2)/(m1+m2))*otherParticle.vx );
 	var thisParticleTempY = bounceFactor*( ((m1-m2)/(m1+m2))*thisParticle.vy + ((2*m2)/(m1+m2))*otherParticle.vy );

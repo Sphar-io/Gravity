@@ -126,6 +126,7 @@ function drawTrails(thisParticle){
 }
 
 //Finds the maximum and minimum mass of all the particles on the screen to allow color scaling between them. Could be adapted to use momentum instead
+//If there is only one particle, sets it to green
 function colorScaler(){
 	maxMass = 0;
 	minMass = Infinity; 
