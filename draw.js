@@ -21,7 +21,7 @@ function guiObj(){
 	this.initialXVelocity = 5;
 	this.initialYVelocity = 0;
 	this.add = function(){createParticle();};
-	this.step = function(){step();};
+	this.step = function(){paused = true; step();};
 	this.friction = 20;
 	this.bounciness = 1;
 	this.gravityAmount = 0;
